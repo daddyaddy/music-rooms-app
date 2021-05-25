@@ -1,0 +1,20 @@
+<div class="room-preview">
+  <div class="left side">
+    <div>
+      <div>
+        <h3>{{ roomDetail.name }}</h3>
+      </div>
+      <div>
+        <span>Członkowie:</span>
+      </div>
+    </div>
+  </div>
+  <div class="right side">
+    <button
+      class="join-button"
+      (click)="this.handleJoinButtonClick(this.roomDetail.roomId)"
+    >
+      <i class="icon-right-open"></i>
+    </button>
+  </div>
+</div>

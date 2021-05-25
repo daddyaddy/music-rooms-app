@@ -1,0 +1,17 @@
+<div class="window-frame" [style.display]="this.isOpened ? 'flex' : 'none'">
+  <div class="window">
+    <div class="header">
+      <h2>{{ this.header }}</h2>
+      <div class="close-button-wrapper">
+        <button class="close-button" (click)="this.handleCloseButtonClick()">
+          <i class="icon-cancel"></i>
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

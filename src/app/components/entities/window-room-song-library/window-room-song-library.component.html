@@ -1,0 +1,21 @@
+<div class="window-room-song-library">
+  <app-window
+    [isOpened]="this.isWindowOpened"
+    [header]="'Select song from library...'"
+    (onClose)="this.handleCloseWindow()"
+  >
+    <div class="songs">
+      <button
+        class="song"
+        *ngFor="let song of songs"
+        (click)="this.handleSongButtonClick(song)"
+      >
+        <div
+          class="cover"
+          [style.backgroundImage]="'url(' + song.cover + ')'"
+        ></div>
+        <div class="name">{{ song.author }} - {{ song.title }}</div>
+      </button>
+    </div>
+  </app-window>
+</div>

@@ -1,0 +1,12 @@
+<div class="room">
+  <app-top-bar>
+    <button class="left-room-button" (click)="this.handleRoomButtonClick()">
+      <i class="icon-left-open"></i>
+    </button>
+    <h3>{{ this.selectedRoomDetail.name }}</h3>
+  </app-top-bar>
+  <app-room-song-members></app-room-song-members>
+  <app-room-song-previews></app-room-song-previews>
+  <app-room-song-host-pilot></app-room-song-host-pilot>
+  <app-room-song-input></app-room-song-input>
+</div>

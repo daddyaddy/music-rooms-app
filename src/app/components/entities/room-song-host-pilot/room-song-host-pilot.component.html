@@ -1,0 +1,10 @@
+<div class="room-song-host-pilot">
+  <ng-container *ngIf="this.isCurrentUserIsHost">
+    <app-room-song-player></app-room-song-player>
+  </ng-container>
+  <ng-container *ngIf="!this.isExistHost">
+    <app-round-button [isBig]="true" (click)="this.handleHostButtonClick()">
+      <i class="icon-star"></i>
+    </app-round-button>
+  </ng-container>
+</div>

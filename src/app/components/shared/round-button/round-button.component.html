@@ -1,0 +1,8 @@
+<button
+  class="icon-button-wrapper host"
+  [disabled]="this.isDisabled"
+  [class.main]="isBig"
+  (click)="this.handleButtonClick()"
+>
+  <ng-content></ng-content>
+</button>

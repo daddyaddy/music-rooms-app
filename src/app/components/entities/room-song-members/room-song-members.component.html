@@ -1,0 +1,5 @@
+<div class="room-song-members">
+  <div class="member" *ngFor="let user of this.users">
+    <app-user [user]="user" [isHost]="user.isHost"></app-user>
+  </div>
+</div>

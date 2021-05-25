@@ -1,0 +1,8 @@
+<div class="user">
+  <div class="avatar" [style.backgroundColor]="this.user.avatarColor">
+    <i class="icon-star" *ngIf="this.isHost"></i>
+  </div>
+  <div class="nickname">
+    <span>{{ this.user.nickname }}</span>
+  </div>
+</div>

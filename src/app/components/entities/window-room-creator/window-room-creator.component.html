@@ -1,0 +1,22 @@
+<div class="window-room-creator">
+  <app-window
+    [isOpened]="this.isWindowOpened"
+    [header]="'Creating new room'"
+    (onClose)="this.handleCloseWindow()"
+  >
+    <div>
+      <input
+        class="room-name-input"
+        placeholder="Type room name"
+        #roomNameInputRef
+      />
+    </div>
+    <button
+      class="create-room-button"
+      [disabled]="this.isCreateRoomButtonDisabled"
+      #createRoomButtonRef
+    >
+      CREATE
+    </button>
+  </app-window>
+</div>

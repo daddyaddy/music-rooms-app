@@ -1,0 +1,49 @@
+.room-preview {
+  width: 100%;
+  height: 45px;
+  background: #242424;
+  border: 1px solid #404040;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .side {
+    display: flex;
+    align-items: center;
+    &.left {
+      flex: 1;
+      height: 100%;
+      padding: 0 5%;
+
+      h3 {
+        margin: 0;
+      }
+    }
+
+    &.right {
+      width: 45px;
+      height: 100%;
+      justify-content: center;
+
+      .join-button {
+        background: #333;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 1px solid #444;
+        box-sizing: border-box;
+        color: #bbb;
+        font-size: 18px;
+        transition: 0.25s ease-out;
+
+        &:hover,
+        &:active {
+          background-color: #b83e80;
+          color: white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class="room-song-previews" #roomSongPreviews>
+  <div>
+    <app-room-song-preview
+      *ngFor="let song of this.songs; index as i"
+      [roomSong]="song"
+      [isCurrent]="this.currentSongIdx === i"
+    ></app-room-song-preview>
+  </div>
+</div>

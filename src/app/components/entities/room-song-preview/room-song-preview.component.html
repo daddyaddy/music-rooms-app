@@ -1,0 +1,24 @@
+<div class="room-song-preview" [class.current]="this.isCurrent">
+  <div class="cover-wrapper">
+    <div
+      class="cover"
+      [style.backgroundImage]="'url(' + this.roomSong.cover + ')'"
+    ></div>
+  </div>
+  <div class="song-info-wrapper">
+    <div>
+      <div class="author">
+        <h3>{{ this.roomSong.author }}</h3>
+      </div>
+      <div class="title">
+        <h4>{{ this.roomSong.title }}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="user-info-wrapper">
+    <div
+      class="user-avatar"
+      [style.background]="this.roomSong.addedByClient.user.avatarColor"
+    ></div>
+  </div>
+</div>

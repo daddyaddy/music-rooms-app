@@ -1,0 +1,21 @@
+.top-bar {
+  background: #b83e80;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 7%;
+  box-sizing: border-box;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    color: #eee;
+  }
+
+  .user-wrapper {
+    background: #5c2844;
+    padding: 10px 20px;
+    border-radius: 18px;
+  }
+}
