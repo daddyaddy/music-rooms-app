@@ -1,7 +1,6 @@
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription, Observable, fromEvent } from 'rxjs';
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
+import { StoreFacade } from './../../../core/store/store.facade';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RoomDetail } from 'src/utils';
 
 @Component({
@@ -17,10 +16,7 @@ export class RoomSongHostPilotComponent implements OnInit, OnDestroy {
   public isExistHost: boolean = false;
   public isCurrentUserIsHost: boolean = false;
 
-  constructor(
-    private roomsFacade: RoomsFacade,
-    private clientsFacade: ClientsFacade
-  ) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
@@ -28,22 +24,22 @@ export class RoomSongHostPilotComponent implements OnInit, OnDestroy {
 
   private subscribe(): void {
     this._subscription$.add(
-      this.clientsFacade.currentClientId$.subscribe((data) => {
+      this.storeFacade.currentClientId$.subscribe((data) => {
         this.currentClientId = data;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.isSelectedRoomHostClientIsYou$.subscribe((data) => {
+      this.storeFacade.isCurrentClientIsHost$.subscribe((data) => {
         this.isCurrentUserIsHost = data;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.isSelectedRoomHostUserInsideRoom$.subscribe((data) => {
+      this.storeFacade.isSelectedRoomHostUserInsideRoom$.subscribe((data) => {
         this.isExistHost = data;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.selectedRoomDetail$.subscribe((data) => {
+      this.storeFacade.selectedRoomDetail$.subscribe((data) => {
         this.selectedRoomDetail = data;
       })
     );
@@ -53,7 +49,7 @@ export class RoomSongHostPilotComponent implements OnInit, OnDestroy {
     const { roomId } = this.selectedRoomDetail;
     if (!this.selectedRoomDetail) return;
 
-    this.roomsFacade.becomeHost(roomId);
+    this.storeFacade.becomeHost({ roomId });
   };
 
   ngOnDestroy(): void {

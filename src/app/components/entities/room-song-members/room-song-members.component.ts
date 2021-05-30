@@ -1,9 +1,8 @@
 import { Subscription } from 'rxjs';
 import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
 import { RoomDetail, RoomMember } from 'src/utils';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-room-song-members',
@@ -15,7 +14,7 @@ export class RoomSongMembersComponent implements OnInit, OnDestroy {
   public selectedRoomDetail: RoomDetail | undefined;
   public users: RoomMember[] = [];
 
-  constructor(private roomsFacade: RoomsFacade) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
@@ -23,16 +22,13 @@ export class RoomSongMembersComponent implements OnInit, OnDestroy {
 
   subscribe(): void {
     this._subscription$.add(
-      this.roomsFacade.selectedRoomDetail$.subscribe(
+      this.storeFacade.selectedRoomDetail$.subscribe(
         (data: RoomDetail | undefined) => {
-          if (!data) this.users = [];
-          this.users = data.clients.map(
-            (client) =>
-              client.user && {
-                ...client.user,
-                isHost: client.clientId === data.clientHostId,
-              }
-          );
+          if (!data) return (this.users = []);
+          this.users = data.clients.map((client) => ({
+            ...client,
+            isHost: client.clientId === data.clientHostId,
+          }));
         }
       )
     );

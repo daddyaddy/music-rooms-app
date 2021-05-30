@@ -1,5 +1,4 @@
-import { ClientsFacade } from './store/clients/clients.facade';
-import { WebsocketService } from './store/webosocket/websocket.service';
+import { WebSocketService } from './core/websocket/websocket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -25,6 +24,7 @@ import { WindowComponent } from './components/shared/window/window.component';
 import { WindowRoomCreatorComponent } from './components/entities/window-room-creator/window-room-creator.component';
 import { WindowRoomSongLibraryComponent } from './components/entities/window-room-song-library/window-room-song-library.component';
 import { RoundButtonComponent } from './components/shared/round-button/round-button.component';
+import { StoreFacade } from './core/store/store.facade';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { RoundButtonComponent } from './components/shared/round-button/round-but
     RoundButtonComponent,
   ],
   imports: [BrowserModule, CommonModule, AppRoutingModule, HttpClientModule],
-  providers: [WebsocketService, ClientsFacade],
+  providers: [WebSocketService, StoreFacade],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

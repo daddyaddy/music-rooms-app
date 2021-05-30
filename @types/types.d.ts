@@ -22,14 +22,14 @@ declare global {
   }
 
   const enum ServerMessageDataType {
-    NEXT_CURRENT_CLIENT_ID = 'next_current_client_id',
+    AUTH_CLIENT_SUCCESS = 'auth_client_success',
     NEXT_CLIENTS = 'next_clients',
     NEXT_ROOMS = 'next_rooms',
   }
 
   type MessageDataType = ServerMessageDataType | ClientMessageDataType;
 
-  type NextCurrentClientIdPayload = { clientId: string };
+  type AuthClientSuccessPayload = { clientId: string; rooms: Room[] };
   type NextClientsPayload = { clients: Client[] };
   type NextRoomsPayload = { rooms: Room[] };
   type AuthUserPayload = { nickname: string };
@@ -48,13 +48,9 @@ declare global {
   interface Client {
     clientId: string;
     socket: WebSocket | null;
-    user?: User;
-  }
-
-  interface User {
-    nickname: string;
-    avatarColor: string;
-    currentRoomId: string | undefined;
+    nickname?: string;
+    avatarColor?: string;
+    currentRoomId?: string | undefined;
   }
 
   interface Room {
@@ -67,8 +63,8 @@ declare global {
   }
 
   interface Song {
-    id: string;
-    sourceUrl: string;
+    songId: string;
+    source: string;
     author: string;
     title: string;
     cover: string;

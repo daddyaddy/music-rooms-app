@@ -1,17 +1,14 @@
 import { withLatestFrom } from 'rxjs/operators';
-import { switchMap } from 'rxjs/operators';
-import { merge } from 'rxjs';
-import { ClientsFacade } from './../../../store/clients/clients.facade';
 import {
   ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
   ViewChild,
-  ViewContainerRef,
 } from '@angular/core';
-import { combineLatest, fromEvent, Observable, Subscription } from 'rxjs';
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-start',
@@ -32,7 +29,7 @@ export class StartComponent implements OnInit, OnDestroy {
   public nickInputValue: string = '';
 
   constructor(
-    private clientsFacade: ClientsFacade,
+    private storeFacade: StoreFacade,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -75,7 +72,7 @@ export class StartComponent implements OnInit, OnDestroy {
 
     this._subscription$.add(
       this.submitForm$.subscribe((nickname: string) => {
-        this.clientsFacade.authClient(nickname);
+        this.storeFacade.authClient(nickname);
       })
     );
   }

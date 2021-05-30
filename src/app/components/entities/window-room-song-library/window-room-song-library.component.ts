@@ -1,10 +1,8 @@
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
-import { ClientsState } from 'src/app/store/clients/clients.state';
 import { WindowRoomSongLibraryService } from './window-room-song-library.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
 import songs from '../../../../assets/songs.json';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-window-room-song-library',
@@ -13,36 +11,32 @@ import songs from '../../../../assets/songs.json';
 })
 export class WindowRoomSongLibraryComponent implements OnInit {
   private _subscription$: Subscription = new Subscription();
-  public songs: Song[] = songs;
+  public songs: Array<Song> = songs;
   public isWindowOpened: boolean = true;
   public currentClient: Client;
   public selectedRoom: Room;
 
   constructor(
-    private clientFacade: ClientsFacade,
-    private windowRoomSongLibraryService: WindowRoomSongLibraryService,
-    private roomsFacade: RoomsFacade
+    private storeFacade: StoreFacade,
+    private windowRoomSongLibraryService: WindowRoomSongLibraryService
   ) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.serve();
       this.subscribe();
     }, 0);
   }
 
-  private serve(): void {}
-
   private subscribe(): void {
     this._subscription$.add(
-      this.clientFacade.currentClient$.subscribe((data) => {
+      this.storeFacade.currentClient$.subscribe((data) => {
         this.currentClient = data;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.selectedRoom$.subscribe((data) => {
+      this.storeFacade.selectedRoom$.subscribe((data) => {
         this.selectedRoom = data;
       })
     );
@@ -60,12 +54,10 @@ export class WindowRoomSongLibraryComponent implements OnInit {
   public handleSongButtonClick(song: Song): void {
     const { currentClient, selectedRoom } = this;
     if (!currentClient) return;
-    if (!currentClient.user) return;
     if (!selectedRoom) return;
-    this.roomsFacade.addRoomSong(
-      { ...song, addedByClient: currentClient },
-      selectedRoom.roomId
-    );
+    const { roomId } = selectedRoom;
+    const roomSong: RoomSong = { ...song, addedByClient: currentClient };
+    this.storeFacade.addRoomSong({ roomSong, roomId });
     this.windowRoomSongLibraryService.closeWindow();
   }
 

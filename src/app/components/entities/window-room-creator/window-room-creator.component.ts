@@ -1,8 +1,8 @@
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { WindowRoomCreatorService } from './window-room-creator.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { map, withLatestFrom } from 'rxjs/operators';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-window-room-creator',
@@ -24,7 +24,7 @@ export class WindowRoomCreatorComponent implements OnInit, OnDestroy {
 
   constructor(
     private windowRoomCreatorService: WindowRoomCreatorService,
-    private roomsFacade: RoomsFacade
+    private roomsFacade: StoreFacade
   ) {}
 
   ngOnInit(): void {}
@@ -62,8 +62,8 @@ export class WindowRoomCreatorComponent implements OnInit, OnDestroy {
       })
     );
     this._subscription$.add(
-      this.submitForm$.subscribe((data) => {
-        this.roomsFacade.createRoom(data);
+      this.submitForm$.subscribe((roomName) => {
+        this.roomsFacade.createRoom({ roomName });
         this.windowRoomCreatorService.closeWindow();
       })
     );

@@ -1,11 +1,8 @@
 import { WindowRoomSongLibraryService } from './../window-room-song-library/window-room-song-library.service';
-import { ClientsFacade } from './../../../store/clients/clients.facade';
-import { RoomsFacade } from './../../../store/rooms/rooms.facade';
-import { getCurrentClient$ } from './../../../store/clients/clients.selectors';
 import { Subscription, Observable, fromEvent } from 'rxjs';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { map, withLatestFrom, switchMap, filter } from 'rxjs/operators';
-import { ClientsState } from 'src/app/store/clients/clients.state';
+import { map } from 'rxjs/operators';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-room-song-input',
@@ -23,8 +20,7 @@ export class RoomSongInputComponent implements OnInit, OnDestroy {
 
   constructor(
     private windowRoomSongLibraryService: WindowRoomSongLibraryService,
-    private clientsFacade: ClientsFacade,
-    private roomsFacade: RoomsFacade
+    private storeFacade: StoreFacade
   ) {}
 
   ngOnInit(): void {}

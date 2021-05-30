@@ -1,63 +1,63 @@
 [
   {
-    "id": "1",
-    "sourceUrl": "./audio/tchami-adieu.mp3",
+    "songId": "1",
+    "source": "./audio/tchami-adieu.mp3",
     "author": "Tchami",
     "title": "Adieu",
     "cover": "https://i1.sndcdn.com/artworks-000223235229-7ktdgh-t500x500.jpg"
   },
   {
-    "id": "2",
-    "sourceUrl": "./audio/avi-apollo.mp3",
+    "songId": "2",
+    "source": "./audio/avi-apollo.mp3",
     "author": "Avi",
     "title": "Apollo",
     "cover": "https://i.ytimg.com/vi/xIfCyGNn-nA/maxresdefault.jpg"
   },
   {
-    "id": "3",
-    "sourceUrl": "./audio/fukaj-ogrod.mp3",
+    "songId": "3",
+    "source": "./audio/fukaj-ogrod.mp3",
     "author": "Fukaj",
     "title": "Ogród",
     "cover": "https://i.ytimg.com/vi/ps5a1jiNHTI/mqdefault.jpg"
   },
   {
-    "id": "4",
-    "sourceUrl": "./audio/kanye-west-real-friends.mp3",
+    "songId": "4",
+    "source": "./audio/kanye-west-real-friends.mp3",
     "author": "Kanye West",
     "title": "Real Friends",
     "cover": "https://www.stampthewax.com/wp-content/uploads/2016/01/kanye-west-real-friends.jpg"
   },
   {
-    "id": "5",
-    "sourceUrl": "./audio/kendrick-lamar-m.a.a.d.-city.mp3",
+    "songId": "5",
+    "source": "./audio/kendrick-lamar-m.a.a.d.-city.mp3",
     "author": "Kendrick Lamar",
     "title": "M.A.A.D City",
     "cover": "https://cdn.newonce.me/uploads/music/release/4468446/R-3975953-1570404795-5694.jpeg.jpg"
   },
   {
-    "id": "6",
-    "sourceUrl": "./audio/kid-cudi-the-void.mp3",
-    "author": "Kid Cudi",
-    "title": "The Void",
+    "songId": "6",
+    "source": "./audio/ksongId-cudi-the-vosongId.mp3",
+    "author": "KsongId Cudi",
+    "title": "The VosongId",
     "cover": "https://i.ytimg.com/vi/GKDY5YMpyUc/maxresdefault.jpg"
   },
   {
-    "id": "7",
-    "sourceUrl": "./audio/probl3m-makijaz.mp3",
+    "songId": "7",
+    "source": "./audio/probl3m-makijaz.mp3",
     "author": "PR0BL3M",
     "title": "Makijaż",
     "cover": "http://images.genius.com/dd1b00cd4b74126276f91f46adc9615e.1000x1000x1.jpg"
   },
   {
-    "id": "8",
-    "sourceUrl": "./audio/sobel-alien.mp3",
+    "songId": "8",
+    "source": "./audio/sobel-alien.mp3",
     "author": "Sobel",
     "title": "Alien",
     "cover": "https://images.genius.com/922c950ff198bacc0e0d297f8f624213.638x637x1.png"
   },
   {
-    "id": "9",
-    "sourceUrl": "./audio/route94-my-love.mp3",
+    "songId": "9",
+    "source": "./audio/route94-my-love.mp3",
     "author": "Route 94",
     "title": "My Love",
     "cover": "http://dyskografie.com/uploads/plyty/okladki/route-94-jess-glynne-my-love.jpg"

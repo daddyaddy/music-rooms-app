@@ -1,4 +1,3 @@
-import { ClientsFacade } from './../../../store/clients/clients.facade';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
-  @Input() user: User;
+  @Input() user: Client;
   @Input() isHost?: boolean = false;
 
-  constructor(private clientsFacade: ClientsFacade) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

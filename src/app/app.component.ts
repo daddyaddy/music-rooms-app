@@ -1,9 +1,8 @@
-import { RoomsFacade } from './store/rooms/rooms.facade';
 import { Subscription } from 'rxjs';
 import { OnDestroy, OnInit } from '@angular/core';
 
 import { Component } from '@angular/core';
-import { ClientsFacade } from './store/clients/clients.facade';
+import { StoreFacade } from './core/store/store.facade';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public isCurrentClientAuth: boolean = false;
   public selectedRoom: Room | undefined = undefined;
 
-  constructor(
-    private clientsFacade: ClientsFacade,
-    private roomsFacade: RoomsFacade
-  ) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
@@ -26,12 +22,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   subscribe() {
     this._subscription$.add(
-      this.clientsFacade.isCurrentClientAuth$.subscribe((data) => {
+      this.storeFacade.isCurrentClientAuth$.subscribe((data) => {
         this.isCurrentClientAuth = data;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.selectedRoom$.subscribe((data) => {
+      this.storeFacade.selectedRoom$.subscribe((data) => {
         this.selectedRoom = data;
       })
     );

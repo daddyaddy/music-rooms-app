@@ -1,5 +1,4 @@
 import { WindowRoomCreatorService } from './../window-room-creator/window-room-creator.service';
-import { RoomsFacade } from './../../../store/rooms/rooms.facade';
 import { fromEvent, Observable } from 'rxjs';
 import { Component, OnInit, ViewChild } from '@angular/core';
 

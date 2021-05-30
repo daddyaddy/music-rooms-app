@@ -2,7 +2,10 @@
   <ng-content></ng-content>
   <div>
     <div class="user-wrapper">
-      <app-user *ngIf="this.currentUser" [user]="this.currentUser"></app-user>
+      <app-user
+        *ngIf="this.currentClient"
+        [user]="this.currentClient"
+      ></app-user>
     </div>
   </div>
 </div>

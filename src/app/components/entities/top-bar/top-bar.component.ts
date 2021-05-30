@@ -1,7 +1,7 @@
-import { Input, OnDestroy } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-top-bar',
@@ -10,17 +10,17 @@ import { ClientsFacade } from 'src/app/store/clients/clients.facade';
 })
 export class TopBarComponent implements OnInit, OnDestroy {
   private _subscription$: Subscription = new Subscription();
-  currentUser: User | undefined;
+  currentClient: Client | undefined;
 
-  constructor(private clientsFacade: ClientsFacade) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
   }
 
   subscribe() {
-    this.clientsFacade.currentUser$.subscribe((data) => {
-      this.currentUser = data;
+    this.storeFacade.currentClient$.subscribe((data) => {
+      this.currentClient = data;
     });
   }
 

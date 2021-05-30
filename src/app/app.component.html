@@ -2,8 +2,6 @@
   <app-window-room-creator></app-window-room-creator>
   <app-window-room-song-library></app-window-room-song-library>
   <app-start *ngIf="!this.isCurrentClientAuth"></app-start>
-  <ng-container *ngIf="this.isCurrentClientAuth">
-    <app-room *ngIf="this.selectedRoom"></app-room>
-    <app-rooms *ngIf="!this.selectedRoom"></app-rooms>
-  </ng-container>
+  <app-room *ngIf="this.isCurrentClientAuth && this.selectedRoom"></app-room>
+  <app-rooms *ngIf="this.isCurrentClientAuth && !this.selectedRoom"></app-rooms>
 </div>

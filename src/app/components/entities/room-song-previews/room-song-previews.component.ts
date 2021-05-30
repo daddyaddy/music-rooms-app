@@ -1,4 +1,4 @@
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
+import { StoreFacade } from './../../../core/store/store.facade';
 import { Subscription } from 'rxjs';
 import {
   Component,
@@ -7,7 +7,7 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { map, distinctUntilChanged, delay } from 'rxjs/operators';
+import { map, distinctUntilChanged, delay, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-room-song-previews',
@@ -20,7 +20,7 @@ export class RoomSongPreviewsComponent implements OnInit, OnDestroy {
   public currentSongIdx: number = -1;
   public songs: RoomSong[] = [];
 
-  constructor(private roomsFacade: RoomsFacade) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit() {}
 
@@ -32,14 +32,15 @@ export class RoomSongPreviewsComponent implements OnInit, OnDestroy {
 
   subscribe() {
     this._subscription$.add(
-      this.roomsFacade.selectedRoom$.subscribe((data) => {
-        this.songs = data.songs;
-        this.currentSongIdx = data.currentSongIndex;
+      this.storeFacade.selectedRoom$.subscribe((data) => {
+        this.songs = data ? data.songs : [];
+        this.currentSongIdx = data ? data.currentSongIndex : -1;
       })
     );
     this._subscription$.add(
-      this.roomsFacade.selectedRoom$
+      this.storeFacade.selectedRoom$
         .pipe(
+          filter((selectedRoom) => selectedRoom !== undefined),
           map((selectedRoom) => selectedRoom.songs.length),
           distinctUntilChanged(),
           delay(100)

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RoomsFacade } from 'src/app/store/rooms/rooms.facade';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 import { RoomDetail } from 'src/utils';
 
 @Component({
@@ -12,7 +12,7 @@ export class RoomsListComponent implements OnInit, OnDestroy {
   private _subscription$: Subscription = new Subscription();
   public roomsDetails: RoomDetail[] = [];
 
-  constructor(private roomsFacade: RoomsFacade) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
@@ -20,9 +20,8 @@ export class RoomsListComponent implements OnInit, OnDestroy {
 
   private subscribe(): void {
     this._subscription$.add(
-      this.roomsFacade.roomsDetails$.subscribe((data) => {
-        this.roomsDetails = data;
-        console.log(data);
+      this.storeFacade.roomsDetails$.subscribe((data) => {
+        this.roomsDetails = data ? data : [];
       })
     );
   }

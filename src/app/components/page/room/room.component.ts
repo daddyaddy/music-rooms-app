@@ -1,9 +1,8 @@
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
 import { OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { RoomsFacade } from './../../../store/rooms/rooms.facade';
 import { Component, OnInit } from '@angular/core';
 import { RoomDetail } from 'src/utils';
+import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
   selector: 'app-room',
@@ -14,10 +13,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   private _subscription$: Subscription = new Subscription();
   public selectedRoomDetail: RoomDetail | undefined = undefined;
 
-  constructor(
-    private roomsFacade: RoomsFacade,
-    private clientsFacade: ClientsFacade
-  ) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {
     this.subscribe();
@@ -25,14 +21,14 @@ export class RoomComponent implements OnInit, OnDestroy {
 
   private subscribe(): void {
     this._subscription$.add(
-      this.roomsFacade.selectedRoomDetail$.subscribe((data) => {
+      this.storeFacade.selectedRoomDetail$.subscribe((data) => {
         this.selectedRoomDetail = data;
       })
     );
   }
 
   handleRoomButtonClick = (): void => {
-    this.clientsFacade.leftRoom();
+    this.storeFacade.leftRoom();
   };
 
   ngOnDestroy(): void {

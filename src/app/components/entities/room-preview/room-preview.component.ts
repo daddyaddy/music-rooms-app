@@ -1,6 +1,5 @@
-import { ClientsFacade } from 'src/app/store/clients/clients.facade';
-import { Subscription, Observable, fromEvent } from 'rxjs';
-import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { StoreFacade } from './../../../core/store/store.facade';
+import { Component, Input, OnInit } from '@angular/core';
 import { RoomDetail } from 'src/utils';
 
 @Component({
@@ -10,11 +9,11 @@ import { RoomDetail } from 'src/utils';
 })
 export class RoomPreviewComponent implements OnInit {
   @Input() roomDetail: RoomDetail;
-  constructor(private clientsFacade: ClientsFacade) {}
+  constructor(private storeFacade: StoreFacade) {}
 
   ngOnInit(): void {}
 
   handleJoinButtonClick = (roomId: string) => {
-    this.clientsFacade.joinRoom(roomId);
+    this.storeFacade.joinRoom(roomId);
   };
 }
