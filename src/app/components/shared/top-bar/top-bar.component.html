@@ -1,0 +1,8 @@
+<div class="top-bar">
+  <div class="content-wrapper">
+    <ng-content></ng-content>
+  </div>
+  <div class="user-wrapper">
+    <app-user *ngIf="this.currentClient" [user]="this.currentClient"></app-user>
+  </div>
+</div>

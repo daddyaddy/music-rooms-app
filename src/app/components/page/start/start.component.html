@@ -6,7 +6,12 @@
     </div>
   </div>
   <div class="nickname-wrapper">
-    <input type="text" placeholder="Your nickname..." #nickInput />
+    <input
+      type="text"
+      autofocus="true"
+      placeholder="Your nickname..."
+      #nickInput
+    />
   </div>
   <div class="join-wrapper">
     <button [disabled]="this.isJoinButtonDisabled" #joinButton>Join!</button>

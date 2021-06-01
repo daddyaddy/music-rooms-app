@@ -1,4 +1,4 @@
-import { withLatestFrom } from 'rxjs/operators';
+import { filter, withLatestFrom } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
   Component,
@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { fromEvent, Observable, Subscription } from 'rxjs';
+import { fromEvent, merge, Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StoreFacade } from 'src/app/core/store/store.facade';
 
@@ -20,7 +20,9 @@ export class StartComponent implements OnInit, OnDestroy {
   @ViewChild('nickInput') nickInput;
   private _subscription$: Subscription = new Subscription();
 
+  private nickInputKeyUp$: Observable<KeyboardEvent>;
   private nickInputValue$: Observable<string>;
+  private nickInputEnter$: Observable<KeyboardEvent>;
   private isJoinButtonDisabled$: Observable<boolean>;
   private joinButtonClicks$: Observable<MouseEvent>;
   private submitForm$: Observable<string>;
@@ -42,18 +44,23 @@ export class StartComponent implements OnInit, OnDestroy {
   }
 
   private serve(): void {
-    this.nickInputValue$ = fromEvent(
-      this.nickInput.nativeElement,
-      'keyup'
-    ).pipe(map((event: KeyboardEvent) => (event.target as any).value));
+    const { nickInput, joinButton } = this;
+    this.nickInputKeyUp$ = fromEvent(nickInput.nativeElement, 'keyup');
+    this.nickInputValue$ = this.nickInputKeyUp$.pipe(
+      map((event) => (event.target as HTMLInputElement).value)
+    );
+    this.nickInputEnter$ = this.nickInputKeyUp$.pipe(
+      filter((event) => event.key === 'Enter')
+    );
     this.isJoinButtonDisabled$ = this.nickInputValue$.pipe(
       map((nickInputValue) => nickInputValue.length < 3)
     );
 
-    this.joinButtonClicks$ = fromEvent(this.joinButton.nativeElement, 'click');
-    this.submitForm$ = this.joinButtonClicks$.pipe(
+    this.joinButtonClicks$ = fromEvent(joinButton.nativeElement, 'click');
+
+    this.submitForm$ = merge(this.joinButtonClicks$, this.nickInputEnter$).pipe(
       withLatestFrom(this.nickInputValue$),
-      map(([joinButtonClicks, nickInputValues]) => nickInputValues)
+      map(([, nickInputValues]) => nickInputValues)
     );
   }
 

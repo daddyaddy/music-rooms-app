@@ -1,87 +1,63 @@
 import { StoreFacade } from './../../../core/store/store.facade';
-import { fromEvent, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import {
-  distinctUntilKeyChanged,
-  filter,
-  map,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { RoomDetail } from 'src/utils';
+import { RoomSongPlayerService } from './room-song-player.service';
 
 @Component({
   selector: 'app-room-song-player',
   templateUrl: './room-song-player.component.html',
   styleUrls: ['./room-song-player.component.scss'],
 })
-export class RoomSongPlayerComponent implements OnInit {
-  public audio: HTMLAudioElement = new Audio();
+export class RoomSongPlayerComponent {
   public _subscription$: Subscription = new Subscription();
   public selectedRoomDetail: RoomDetail;
-  public currentSong: Song;
-  constructor(private storeFacade: StoreFacade) {}
 
-  ngOnInit(): void {}
+  constructor(
+    private roomSongPlayerService: RoomSongPlayerService,
+    private storeFacade: StoreFacade
+  ) {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.serve();
-      this.subscribe();
-    }, 0);
-  }
-
-  public serve() {
-    fromEvent(this.audio, 'ended')
-      .pipe(withLatestFrom(this.storeFacade.selectedRoom$))
-      .subscribe(([event, selectedRoom]) => {
-        this.storeFacade.nextRoomSong({ roomId: selectedRoom.roomId });
-      });
-    this.storeFacade.selectedRoomCurrentSong$
-      .pipe(
-        filter((currentSong) => currentSong !== undefined),
-        distinctUntilKeyChanged('songId')
-      )
-      .subscribe((song) => {
-        this.audio.pause();
-        this.audio.src = './assets/' + song.source;
-        this.audio.load();
-      });
-
-    this.storeFacade.selectedRoomDetail$
-      .pipe(
-        map((selectedRoomDetail) => selectedRoomDetail.isCurrentSongPlay),
-        filter((isCurrentSongPlay) => isCurrentSongPlay === true)
-      )
-      .subscribe((data) => {
-        this.audio.play();
-      });
-
-    this.storeFacade.selectedRoomDetail$
-      .pipe(
-        map((selectedRoomDetail) => selectedRoomDetail.isCurrentSongPlay),
-        filter((isCurrentSongPlay) => isCurrentSongPlay === false)
-      )
-      .subscribe((data) => {
-        this.audio.pause();
-      });
+    setTimeout(() => this.subscribe(), 0);
   }
 
   public subscribe() {
+    const { selectedRoomDetail$ } = this.storeFacade;
     this._subscription$.add(
-      this.storeFacade.selectedRoomDetail$.subscribe((data) => {
-        this.selectedRoomDetail = data;
+      selectedRoomDetail$.subscribe((selectedRoomDetail) => {
+        this.selectedRoomDetail = selectedRoomDetail;
       })
     );
+
+    const { roomSongPlayerService } = this;
+    roomSongPlayerService.songEnded$
+      .pipe(
+        withLatestFrom(this.storeFacade.selectedRoom$),
+        map(([, selectedRoom]) => selectedRoom.roomId)
+      )
+      .subscribe((roomId) => this.storeFacade.nextRoomSong({ roomId }));
+
+    roomSongPlayerService.newSong$.subscribe((song) => {
+      roomSongPlayerService.load(`/assets/${song.source}`);
+    });
+
+    roomSongPlayerService.isCurrentSongPlay$.subscribe((isCurrentSongPlay) => {
+      isCurrentSongPlay
+        ? roomSongPlayerService.play()
+        : roomSongPlayerService.pause();
+    });
   }
 
   public handlePreviousButtonClick = () => {
-    const { selectedRoomDetail } = this;
+    const { selectedRoomDetail, storeFacade } = this;
     if (!selectedRoomDetail) return;
-    this.storeFacade.prevRoomSong({ roomId: selectedRoomDetail.roomId });
+    storeFacade.prevRoomSong({ roomId: selectedRoomDetail.roomId });
   };
 
   public handleAudioButtonClick = () => {
-    const { selectedRoomDetail } = this;
+    const { selectedRoomDetail, storeFacade } = this;
     if (!selectedRoomDetail) return;
     !selectedRoomDetail.isCurrentSongPlay &&
       this.storeFacade.playRoomSong({ roomId: selectedRoomDetail.roomId });

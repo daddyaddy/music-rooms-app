@@ -1,7 +1,27 @@
 body {
-    background: #151515;
-    color: #bbb;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+  background: #151515;
+  color: #bbb;
+  margin: 0;
+  font-family: "Nunito Sans";
+  font-size: 12px;
+}
+
+h3 {
+  color: white;
+  font-size: 19px;
+}
+
+button {
+  &:active {
+    transition: transform 0.3s ease-out;
+    transform: scale(0.9);
+  }
+}
+
+span,
+button,
+p,
+input,
+a {
+  font-family: "Nunito Sans";
 }

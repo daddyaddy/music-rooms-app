@@ -1,13 +1,12 @@
 .room-preview {
   width: 100%;
-  height: 45px;
+  padding: 5px 0;
   background: #242424;
-  border: 1px solid #404040;
   margin-bottom: 15px;
-  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   .side {
     display: flex;
@@ -17,25 +16,28 @@
       height: 100%;
       padding: 0 5%;
 
-      h3 {
+      h4 {
         margin: 0;
+        font-size: 15px;
+        color: #ddd;
       }
     }
 
     &.right {
       width: 45px;
-      height: 100%;
+      height: 45px;
       justify-content: center;
+      margin-right: 6px;
 
       .join-button {
         background: #333;
         width: 100%;
         height: 100%;
-        border-radius: 50%;
-        border: 1px solid #444;
+        border: none;
         box-sizing: border-box;
         color: #bbb;
         font-size: 18px;
+
         transition: 0.25s ease-out;
 
         &:hover,

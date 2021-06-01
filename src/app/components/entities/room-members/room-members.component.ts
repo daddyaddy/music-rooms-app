@@ -5,11 +5,11 @@ import { RoomDetail, RoomMember } from 'src/utils';
 import { StoreFacade } from 'src/app/core/store/store.facade';
 
 @Component({
-  selector: 'app-room-song-members',
-  templateUrl: './room-song-members.component.html',
-  styleUrls: ['./room-song-members.component.scss'],
+  selector: 'app-room-members',
+  templateUrl: './room-members.component.html',
+  styleUrls: ['./room-members.component.scss'],
 })
-export class RoomSongMembersComponent implements OnInit, OnDestroy {
+export class RoomMembersComponent implements OnInit, OnDestroy {
   private _subscription$: Subscription = new Subscription();
   public selectedRoomDetail: RoomDetail | undefined;
   public users: RoomMember[] = [];

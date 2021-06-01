@@ -3,10 +3,30 @@
     <button class="left-room-button" (click)="this.handleRoomButtonClick()">
       <i class="icon-left-open"></i>
     </button>
-    <h3>{{ this.selectedRoomDetail.name }}</h3>
+    <h3>{{ this.selectedRoomDetail && this.selectedRoomDetail.name }}</h3>
   </app-top-bar>
-  <app-room-song-members></app-room-song-members>
-  <app-room-song-previews></app-room-song-previews>
-  <app-room-song-host-pilot></app-room-song-host-pilot>
-  <app-room-song-input></app-room-song-input>
+  <app-room-members></app-room-members>
+  <div class="room-song-previews" #roomSongPreviews>
+    <div *ngIf="this.selectedRoomDetail">
+      <app-room-song-preview
+        *ngFor="let song of this.selectedRoomDetail.songs; index as i"
+        [roomSong]="song"
+        [isCurrent]="this.selectedRoomDetail.currentSongIndex === i"
+      ></app-room-song-preview>
+    </div>
+  </div>
+  <div class="controller">
+    <app-room-song-player
+      *ngIf="this.isCurrentUserIsHost"
+    ></app-room-song-player>
+    <app-round-button
+      *ngIf="!this.isExistHost"
+      class="become-host"
+      [isBig]="true"
+      (click)="this.handleBecomeHostButtonClick()"
+    >
+      <i class="icon-star"></i>
+    </app-round-button>
+  </div>
+  <button class="add-song-button" #addSongButtonRef>Add song here!</button>
 </div>

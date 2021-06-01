@@ -1,17 +1,21 @@
-<div class="room-song-player">
-  <app-round-button
-    [isDisabled]="this.isPreviousButtonDisabled()"
-    (onClick)="this.handlePreviousButtonClick()"
-  >
-    <i class="icon-to-start"></i>
-  </app-round-button>
-  <app-round-button (onClick)="this.handleAudioButtonClick()" [isBig]="true">
-    <i [class]="this.getAudioStatusButtonClass()"></i>
-  </app-round-button>
-  <app-round-button
-    [isDisabled]="this.isNextButtonDisabled()"
-    (onClick)="this.handleNextButtonClick()"
-  >
-    <i class="icon-to-end"></i>
-  </app-round-button>
-</div>
+<app-round-button
+  class="previous"
+  [isDisabled]="this.isPreviousButtonDisabled()"
+  (onClick)="this.handlePreviousButtonClick()"
+>
+  <i class="icon-to-start"></i>
+</app-round-button>
+<app-round-button
+  class="play-pause"
+  (onClick)="this.handleAudioButtonClick()"
+  [isBig]="true"
+>
+  <i [class]="this.getAudioStatusButtonClass()"></i>
+</app-round-button>
+<app-round-button
+  class="next"
+  [isDisabled]="this.isNextButtonDisabled()"
+  (onClick)="this.handleNextButtonClick()"
+>
+  <i class="icon-to-end"></i>
+</app-round-button>

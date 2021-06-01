@@ -13,6 +13,10 @@
     color: #eee;
   }
 
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+  }
   .user-wrapper {
     background: #5c2844;
     padding: 10px 20px;

@@ -1,15 +1,15 @@
-import { WindowRoomSongLibraryService } from './window-room-song-library.service';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import songs from '../../../../assets/songs.json';
 import { StoreFacade } from 'src/app/core/store/store.facade';
+import { WindowSongLibraryService } from './window-song-library.service';
 
 @Component({
-  selector: 'app-window-room-song-library',
-  templateUrl: './window-room-song-library.component.html',
-  styleUrls: ['./window-room-song-library.component.scss'],
+  selector: 'app-window-song-library',
+  templateUrl: './window-song-library.component.html',
+  styleUrls: ['./window-song-library.component.scss'],
 })
-export class WindowRoomSongLibraryComponent implements OnInit {
+export class WindowSongLibraryComponent implements OnInit {
   private _subscription$: Subscription = new Subscription();
   public songs: Array<Song> = songs;
   public isWindowOpened: boolean = true;
@@ -18,7 +18,7 @@ export class WindowRoomSongLibraryComponent implements OnInit {
 
   constructor(
     private storeFacade: StoreFacade,
-    private windowRoomSongLibraryService: WindowRoomSongLibraryService
+    private windowRoomSongLibraryService: WindowSongLibraryService
   ) {}
 
   ngOnInit(): void {}

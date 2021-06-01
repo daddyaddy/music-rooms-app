@@ -25,7 +25,6 @@ export class StoreFacade {
   public readonly clients$: Observable<Client[]>;
   public readonly currentClient$: Observable<Client | undefined>;
   public readonly isCurrentClientAuth$: Observable<boolean>;
-  public readonly isExistHost$: Observable<boolean>;
   public readonly isCurrentUserIsHost$: Observable<boolean>;
   public readonly rooms$: Observable<Room[]>;
   public readonly roomsDetails$: Observable<RoomDetail[]>;
