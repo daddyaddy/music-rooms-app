@@ -1,3 +1,4 @@
+import { YoutubeService } from './../../../core/youtube/youtube.service';
 import { OnDestroy, ViewChild } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { Component } from '@angular/core';
@@ -20,7 +21,8 @@ export class RoomComponent implements OnDestroy {
 
   constructor(
     private storeFacade: StoreFacade,
-    private windowSongLibraryService: WindowSongLibraryService
+    private windowSongLibraryService: WindowSongLibraryService,
+    private youtubeService: YoutubeService
   ) {}
 
   ngAfterViewInit(): void {
