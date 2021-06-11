@@ -1,3 +1,4 @@
+import { StoreFacade } from 'src/app/core/store/store.facade';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./room-song-preview.component.scss'],
 })
 export class RoomSongPreviewComponent implements OnInit {
+  @Input() roomId: string;
+  @Input() isHost: boolean;
   @Input() roomSong: RoomSong;
   @Input() isCurrent: boolean;
 
-  constructor() {}
+  constructor(public storeFacade: StoreFacade) {}
 
   ngOnInit(): void {}
+
+  public handleRoomSongPreviewClick = () => {
+    const { roomId, isHost, roomSong } = this;
+    if (!isHost) return;
+    this.storeFacade.selectRoomSong({ roomId, songId: roomSong.songId });
+  };
 }

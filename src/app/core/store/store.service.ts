@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { ofType } from 'src/utils';
 import { WebSocketService } from '../websocket/websocket.service';
+import storeMock from './store.mocks.json';
+
+const { currentClientId, clients, rooms } = storeMock;
 
 @Injectable({ providedIn: 'root' })
 export class StoreService {
@@ -13,7 +17,10 @@ export class StoreService {
   public readonly clients$: Observable<Client[]>;
   public readonly rooms$: Observable<Room[]>;
 
-  constructor(private webSocketService: WebSocketService) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private webSocketService: WebSocketService
+  ) {
     this._currentClientId = new BehaviorSubject(undefined);
     this._clients = new BehaviorSubject([]);
     this._rooms = new BehaviorSubject([]);
@@ -21,6 +28,14 @@ export class StoreService {
     this.clients$ = this._clients.asObservable();
     this.rooms$ = this._rooms.asObservable();
     this.subscribe();
+  }
+
+  private mock() {
+    setTimeout(() => {
+      this._currentClientId.next(currentClientId);
+      this._clients.next(clients as unknown as Client[]);
+      this._rooms.next(rooms as unknown as Room[]);
+    }, 1000);
   }
 
   private subscribe(): void {

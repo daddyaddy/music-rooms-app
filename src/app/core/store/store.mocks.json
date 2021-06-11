@@ -1,0 +1,65 @@
+{
+  "currentClientId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+  "clients": [
+    {
+      "clientId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+      "socket": null,
+      "nickname": "adrianek",
+      "avatarColor": ["#f44", "#2f8aff"],
+      "currentRoomId": "91bfbc93-447f-4e8c-b372-30dafde90475"
+    }
+  ],
+  "rooms": [
+    {
+      "roomId": "91bfbc93-447f-4e8c-b372-30dafde90475",
+      "name": "test",
+      "currentSongIndex": 1,
+      "isCurrentSongPlay": true,
+      "clientHostId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+      "songs": [
+        {
+          "songId": "ivCY3Ec4iaU",
+          "ytId": "ivCY3Ec4iaU",
+          "author": "KanyeWestVEVO",
+          "title": "Kanye West - Follow God",
+          "cover": "https://i.ytimg.com/vi/ivCY3Ec4iaU/default.jpg",
+          "addedByClient": {
+            "clientId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+            "socket": null,
+            "nickname": "adrianek",
+            "avatarColor": ["#f44", "#2f8aff"],
+            "currentRoomId": "91bfbc93-447f-4e8c-b372-30dafde90475"
+          }
+        },
+        {
+          "songId": "ivCY3Ec4iaU",
+          "ytId": "ivCY3Ec4iaU",
+          "author": "KanyeWestVEVO",
+          "title": "Kanye West - Follow God",
+          "cover": "https://i.ytimg.com/vi/ivCY3Ec4iaU/default.jpg",
+          "addedByClient": {
+            "clientId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+            "socket": null,
+            "nickname": "adrianek",
+            "avatarColor": ["#f44", "#2f8aff"],
+            "currentRoomId": "91bfbc93-447f-4e8c-b372-30dafde90475"
+          }
+        },
+        {
+          "songId": "ivCY3Ec4iaU",
+          "ytId": "ivCY3Ec4iaU",
+          "author": "KanyeWestVEVO",
+          "title": "Kanye West - Follow God",
+          "cover": "https://i.ytimg.com/vi/ivCY3Ec4iaU/default.jpg",
+          "addedByClient": {
+            "clientId": "8fd79359-914b-4ce7-b234-9cb2a688334d",
+            "socket": null,
+            "nickname": "adrianek",
+            "avatarColor": ["#f44", "#2f8aff"],
+            "currentRoomId": "91bfbc93-447f-4e8c-b372-30dafde90475"
+          }
+        }
+      ]
+    }
+  ]
+}

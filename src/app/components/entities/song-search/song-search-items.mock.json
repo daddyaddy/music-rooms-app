@@ -1,0 +1,157 @@
+[
+  {
+    "kind": "youtube#searchResult",
+    "etag": "JCXAdFVJDT1iP-e2rUqcAbHjqQc",
+    "id": { "kind": "youtube#video", "videoId": "Ly7uj0JwgKg" },
+    "snippet": {
+      "publishedAt": "2016-01-15T19:59:52Z",
+      "channelId": "UCXAhoI7XO2kafTMjocm0jCg",
+      "title": "Flume - Never Be Like You feat. Kai",
+      "description": "Flume - Never Be Like You feat. Kai Subscribe to the Flume YouTube channel for more music & videos: http://flu.me/YouTube New Flume apparel: ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/Ly7uj0JwgKg/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/Ly7uj0JwgKg/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/Ly7uj0JwgKg/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Flume",
+      "liveBroadcastContent": "none",
+      "publishTime": "2016-01-15T19:59:52Z"
+    }
+  },
+  {
+    "kind": "youtube#searchResult",
+    "etag": "bgyt5VFYrWBuvCChWPZhLU16Lks",
+    "id": { "kind": "youtube#video", "videoId": "7TML_MTQdg4" },
+    "snippet": {
+      "publishedAt": "2019-03-20T19:58:19Z",
+      "channelId": "UCXAhoI7XO2kafTMjocm0jCg",
+      "title": "Hi This Is Flume [Mixtape Visualiser]",
+      "description": "I made a mixtape with some of my favorite artists. It's 38 minutes of music, with a visualizer created by Jonathan Zawada. We hope you enjoy :) -Harley ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/7TML_MTQdg4/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/7TML_MTQdg4/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/7TML_MTQdg4/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Flume",
+      "liveBroadcastContent": "none",
+      "publishTime": "2019-03-20T19:58:19Z"
+    }
+  },
+  {
+    "kind": "youtube#searchResult",
+    "etag": "YkfFYRHw99utu8z0C8MFTJBHgbQ",
+    "id": { "kind": "youtube#video", "videoId": "6vopR3ys8Kw" },
+    "snippet": {
+      "publishedAt": "2013-11-18T16:44:32Z",
+      "channelId": "UCy3DbVl0K1qj0e8jGAOYgPg",
+      "title": "Flume &amp; Chet Faker - Drop the Game [Official Music Video]",
+      "description": "Produced by Collider & GAREN Director: Lorin Askill Producer: Garen Barsegian Dancer: Storyboard P http://www.facebook.com/flumemusic ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/6vopR3ys8Kw/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/6vopR3ys8Kw/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/6vopR3ys8Kw/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Future Classic",
+      "liveBroadcastContent": "none",
+      "publishTime": "2013-11-18T16:44:32Z"
+    }
+  },
+  {
+    "kind": "youtube#searchResult",
+    "etag": "hsrAjkW1ofQPxQwxklhgY6u7hk4",
+    "id": { "kind": "youtube#video", "videoId": "X_H3cIsenBQ" },
+    "snippet": {
+      "publishedAt": "2012-10-12T04:50:49Z",
+      "channelId": "UCXAhoI7XO2kafTMjocm0jCg",
+      "title": "Flume - Holdin On",
+      "description": "From Flume's debut album. 'Rushing Back' feat. Vera Blue music video: https://flu.me/RushingBackVideo 'Rushing Back' out now: https://flu.me/RushingBack ...",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/X_H3cIsenBQ/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/X_H3cIsenBQ/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/X_H3cIsenBQ/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Flume",
+      "liveBroadcastContent": "none",
+      "publishTime": "2012-10-12T04:50:49Z"
+    }
+  },
+  {
+    "kind": "youtube#searchResult",
+    "etag": "bIrcdPTgYP5TD_9CoyM4rkADBDQ",
+    "id": { "kind": "youtube#video", "videoId": "SPc-oWXEhQQ" },
+    "snippet": {
+      "publishedAt": "2017-05-05T04:04:16Z",
+      "channelId": "UCXAhoI7XO2kafTMjocm0jCg",
+      "title": "Flume - Hyperreal feat. Kučka",
+      "description": "This is it. That's a wrap on all the music from Skin. The Companion EP II is out on vinyl today, and as a final touch I'm releasing a bonus track - 'Hyperreal' feat.",
+      "thumbnails": {
+        "default": {
+          "url": "https://i.ytimg.com/vi/SPc-oWXEhQQ/default.jpg",
+          "width": 120,
+          "height": 90
+        },
+        "medium": {
+          "url": "https://i.ytimg.com/vi/SPc-oWXEhQQ/mqdefault.jpg",
+          "width": 320,
+          "height": 180
+        },
+        "high": {
+          "url": "https://i.ytimg.com/vi/SPc-oWXEhQQ/hqdefault.jpg",
+          "width": 480,
+          "height": 360
+        }
+      },
+      "channelTitle": "Flume",
+      "liveBroadcastContent": "none",
+      "publishTime": "2017-05-05T04:04:16Z"
+    }
+  }
+]

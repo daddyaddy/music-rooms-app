@@ -14,6 +14,7 @@ import {
   getSelectedRoomDetail$,
   getSelectedRoomHostClient$,
   getSelectedRoomCurrentSong$,
+  getSelectedRoomSongs$,
 } from './store.selectors';
 import { StoreService } from './store.service';
 import { WebSocketService } from '../websocket/websocket.service';
@@ -29,6 +30,7 @@ export class StoreFacade {
   public readonly rooms$: Observable<Room[]>;
   public readonly roomsDetails$: Observable<RoomDetail[]>;
   public readonly selectedRoom$: Observable<Room | undefined>;
+  public readonly selectedRoomSongs$: Observable<RoomSong[]>;
   public readonly selectedRoomCurrentSong$: Observable<Song | undefined>;
   public readonly selectedRoomDetail$: Observable<RoomDetail | undefined>;
   public readonly selectedRoomHostClient$: Observable<Client | undefined>;
@@ -46,6 +48,7 @@ export class StoreFacade {
     this.rooms$ = getRooms$(storeService);
     this.roomsDetails$ = getRoomsDetails$(storeService);
     this.selectedRoom$ = getSelectedRoom$(storeService);
+    this.selectedRoomSongs$ = getSelectedRoomSongs$(storeService);
     this.selectedRoomCurrentSong$ = getSelectedRoomCurrentSong$(storeService);
     this.selectedRoomDetail$ = getSelectedRoomDetail$(storeService);
     this.selectedRoomHostClient$ = getSelectedRoomHostClient$(storeService);
@@ -92,6 +95,13 @@ export class StoreFacade {
   public addRoomSong(payload: AddRoomSongPayload): void {
     this.webSocketService.send<AddRoomSongPayload>({
       type: ClientMessageDataType.ADD_ROOM_SONG,
+      payload,
+    });
+  }
+
+  public selectRoomSong(payload: SelectRoomSongPayload): void {
+    this.webSocketService.send<SelectRoomSongPayload>({
+      type: ClientMessageDataType.SELECT_ROOM_SONG,
       payload,
     });
   }

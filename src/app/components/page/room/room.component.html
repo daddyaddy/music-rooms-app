@@ -1,32 +1,44 @@
 <div class="room">
-  <app-top-bar>
-    <button class="left-room-button" (click)="this.handleRoomButtonClick()">
-      <i class="icon-left-open"></i>
-    </button>
-    <h3>{{ this.selectedRoomDetail && this.selectedRoomDetail.name }}</h3>
-  </app-top-bar>
-  <app-room-members></app-room-members>
+  <div class="top-static">
+    <div class="top">
+      <app-top-bar>
+        <button class="left-room-button" (click)="this.handleRoomButtonClick()">
+          <i class="icon-left-open"></i>
+        </button>
+        <h3>{{ this.selectedRoomDetail && this.selectedRoomDetail.name }}</h3>
+      </app-top-bar>
+      <app-room-members></app-room-members>
+    </div>
+  </div>
+
   <div class="room-song-previews" #roomSongPreviews>
     <div *ngIf="this.selectedRoomDetail">
       <app-room-song-preview
         *ngFor="let song of this.selectedRoomDetail.songs; index as i"
+        [roomId]="this.selectedRoomDetail.roomId"
+        [isHost]="this.isCurrentUserIsHost"
         [roomSong]="song"
         [isCurrent]="this.selectedRoomDetail.currentSongIndex === i"
       ></app-room-song-preview>
     </div>
   </div>
-  <div class="controller">
-    <app-room-song-player
-      *ngIf="this.isCurrentUserIsHost"
-    ></app-room-song-player>
-    <app-round-button
-      *ngIf="!this.isExistHost"
-      class="become-host"
-      [isBig]="true"
-      (click)="this.handleBecomeHostButtonClick()"
-    >
-      <i class="icon-star"></i>
-    </app-round-button>
+  <div class="bottom-static">
+    <div class="bottom">
+      <div class="controller">
+        <app-room-song-player
+          *ngIf="this.isCurrentUserIsHost"
+        ></app-room-song-player>
+        <app-round-button
+          *ngIf="!this.isExistHost"
+          class="become-host"
+          [isBig]="true"
+          (click)="this.handleBecomeHostButtonClick()"
+        >
+          <i class="icon-star"></i>
+        </app-round-button>
+      </div>
+      <app-song-search></app-song-search>
+      <app-song-library></app-song-library>
+    </div>
   </div>
-  <button class="add-song-button" #addSongButtonRef>Add song here!</button>
 </div>

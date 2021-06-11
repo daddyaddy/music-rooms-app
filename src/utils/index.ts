@@ -17,3 +17,7 @@ export function ofType(
   return (source: Observable<MessageData>): Observable<MessageData> =>
     source.pipe(filter((msgData: MessageData) => msgData.type === msgDataType));
 }
+
+export function sleep(ms: number): Promise<number> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

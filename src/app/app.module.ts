@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StartComponent } from './components/page/start/start.component';
 import { RoomComponent } from './components/page/room/room.component';
@@ -20,6 +19,15 @@ import { WindowRoomCreatorComponent } from './components/entities/window-room-cr
 import { WindowSongLibraryComponent } from './components/entities/window-song-library/window-song-library.component';
 import { RoundButtonComponent } from './components/shared/round-button/round-button.component';
 import { StoreFacade } from './core/store/store.facade';
+import { SongSearchComponent } from './components/entities/song-search/song-search.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SongLibraryComponent } from './components/entities/song-library/song-library.component';
+import { SpotifyComponent } from './components/page/spotify/spotify.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: 'spotify-callback', component: SpotifyComponent },
+];
 
 @NgModule({
   declarations: [
@@ -37,8 +45,17 @@ import { StoreFacade } from './core/store/store.facade';
     WindowRoomCreatorComponent,
     WindowSongLibraryComponent,
     RoundButtonComponent,
+    SongSearchComponent,
+    SongLibraryComponent,
+    SpotifyComponent,
   ],
-  imports: [BrowserModule, CommonModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    NgxSkeletonLoaderModule,
+  ],
   providers: [WebSocketService, StoreFacade],
   bootstrap: [AppComponent],
 })

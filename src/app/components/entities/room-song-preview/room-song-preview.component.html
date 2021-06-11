@@ -1,9 +1,19 @@
-<div class="room-song-preview" [class.current]="this.isCurrent">
+<button
+  class="room-song-preview"
+  [class.current]="this.isCurrent"
+  (click)="this.handleRoomSongPreviewClick()"
+>
   <div class="cover-wrapper">
     <div
       class="cover"
       [style.backgroundImage]="'url(' + this.roomSong.cover + ')'"
-    ></div>
+    >
+      <app-user
+        class="added-by-client"
+        [user]="this.roomSong.addedByClient"
+        [isMini]="true"
+      ></app-user>
+    </div>
   </div>
   <div class="song-info-wrapper">
     <div>
@@ -21,4 +31,4 @@
       [style.background]="this.roomSong.addedByClient.avatarColor"
     ></div>
   </div>
-</div>
+</button>

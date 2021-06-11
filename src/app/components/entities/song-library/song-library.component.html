@@ -1,0 +1,27 @@
+<section class="library-folders">
+  <button class="folder selected"><i class="icon-spotify"></i>Spotify</button>
+  <button class="folder"><i class="icon-youtube-play"></i>YouTube</button>
+  <button class="folder"><i class="icon-soundcloud"></i>SoundCloud</button>
+</section>
+<section class="library-songs">
+  <button
+    class="sign-in"
+    *ngIf="!this.spotifyUserTracks.length"
+    (click)="this.handleAddSpotifyAccountClick()"
+  >
+    <i class="icon-spotify"></i>Add spotify account
+  </button>
+  <button
+    class="library-song-preview"
+    *ngFor="let userTrack of this.spotifyUserTracks"
+  >
+    <div class="load-background"></div>
+    <div
+      class="cover"
+      [style.backgroundImage]="'url(' + userTrack.album.images[0].url + ')'"
+    ></div>
+    <div class="label">
+      <span>{{ userTrack.name }}</span>
+    </div>
+  </button>
+</section>

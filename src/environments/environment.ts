@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  ytApiUrl: '/googleapis/youtube/v3/search',
+  spotifyApiUrl: '/spotify-api/v1',
+  spotifyAccountUrl: '/account-spotify',
+  wsUrl: 'ws://localhost:62188',
 };
 
 /*

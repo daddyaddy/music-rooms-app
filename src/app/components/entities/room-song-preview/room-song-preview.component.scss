@@ -2,15 +2,21 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 70px;
-  background: #222;
+  height: 60px;
+  background: linear-gradient(45deg, #212142, #1b1a3c);
   margin-bottom: 15px;
   padding: 0 3%;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 0 18px 1px #0e0d24;
+  overflow: hidden;
+  text-align: left;
+  color: inherit;
+  border: none;
 
   &.current {
-    border: 2px solid #c35992;
+    background: linear-gradient(45deg, #2d2d53, #282053);
+    border: 2px solid #272562;
   }
 
   .cover-wrapper {
@@ -19,8 +25,7 @@
     align-items: center;
     width: 60px;
     height: 60px;
-    margin-right: 15px;
-    background: #2a2a2a;
+    margin-right: 8px;
     border-radius: 15px;
 
     .cover {
@@ -30,6 +35,16 @@
       background-size: cover;
       background-position: center;
       border-radius: 5px;
+      position: relative;
+
+      .added-by-client {
+        position: absolute;
+        margin: -5px -7px;
+        right: 0;
+        bottom: 0;
+        border: 4px solid #201f41;
+        border-radius: 50%;
+      }
     }
   }
 
@@ -42,6 +57,7 @@
     .author {
       h3 {
         margin: 0;
+        font-size: 13px;
       }
     }
 

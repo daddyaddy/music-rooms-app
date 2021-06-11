@@ -21,8 +21,7 @@ export class RoomComponent implements OnDestroy {
 
   constructor(
     private storeFacade: StoreFacade,
-    private windowSongLibraryService: WindowSongLibraryService,
-    private youtubeService: YoutubeService
+    private windowSongLibraryService: WindowSongLibraryService
   ) {}
 
   ngAfterViewInit(): void {
@@ -32,12 +31,7 @@ export class RoomComponent implements OnDestroy {
     }, 0);
   }
 
-  private serve(): void {
-    this.addSongButtonClick$ = fromEvent(
-      this.addSongButtonRef.nativeElement,
-      'click'
-    );
-  }
+  private serve(): void {}
 
   private subscribe(): void {
     this._subscription$.add(

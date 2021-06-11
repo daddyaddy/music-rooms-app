@@ -1,0 +1,136 @@
+<div class="form">
+  <button class="search-button"><i class="icon-th-large"></i></button>
+  <input
+    #searchInputRef
+    class="search-input"
+    [disabled]="this.isSearchPending || this.isAddSongPending"
+    [value]="this.searchInputValue"
+    placeholder="Aa"
+  />
+  <button
+    #searchButtonRef
+    class="search-button"
+    [style.display]="
+      !this.isSearchPending && !this.ytItems.length ? 'block' : 'none'
+    "
+    [disabled]="this.searchInputValue.length < 3"
+  >
+    <i class="icon-search"></i>
+  </button>
+  <button
+    class="search-button spin"
+    [style.display]="
+      this.isSearchPending || this.isAddSongPending ? 'block' : 'none'
+    "
+    disabled="true"
+  >
+    <i class="icon-spin6"></i>
+  </button>
+  <button
+    #cancelButtonRef
+    class="search-button"
+    [style.display]="
+      !this.isSearchPending && !this.isAddSongPending && this.ytItems.length
+        ? 'block'
+        : 'none'
+    "
+  >
+    <i class="icon-cancel"></i>
+  </button>
+</div>
+
+<div
+  class="yt-items-wrapper"
+  *ngIf="this.ytItems.length || this.isSearchPending || this.isAddSongPending"
+>
+  <div class="items">
+    <button
+      class="yt-item"
+      [disabled]="
+        this.isSearchPending ||
+        this.isAddSongPending ||
+        this.isSongAlreadyAdded(item.id.videoId)
+      "
+      [class.added]="
+        item !== undefined && this.isSongAlreadyAdded(item.id.videoId)
+      "
+      [class.uploading]="
+        this.isAddSongPending && this.selectedSongId === item.id.videoId
+      "
+      *ngFor="let item of this.getItems(ytItems, this.isSearchPending)"
+      (click)="this.handleYtItemClick(item)"
+    >
+      <div class="cover-wrapper">
+        <svg
+          [class.preuploading]="this.songProgress === undefined"
+          height="50"
+          width="50"
+          *ngIf="
+            this.isAddSongPending && this.selectedSongId === item.id.videoId
+          "
+        >
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="#fc2e7e"
+            stroke-width="6"
+            [style.strokeDasharray]="circumference"
+            [style.strokeDashoffset]="
+              this.songProgress !== undefined
+                ? dashoffset
+                : (circumference / 4) * 3
+            "
+          />
+        </svg>
+        <div
+          *ngIf="item !== undefined"
+          class="cover"
+          [style.backgroundImage]="
+            'url(' + item.snippet.thumbnails.default.url + ')'
+          "
+        ></div>
+        <ngx-skeleton-loader
+          *ngIf="item === undefined"
+          count="1"
+          class="cover"
+          [theme]="{
+            width: '100%',
+            height: '100%',
+            'border-radius': '50%',
+            background: '#4c4284'
+          }"
+          animation="progress-dark"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="name">
+        <span *ngIf="item !== undefined" class="author">{{
+          item.snippet.channelTitle
+        }}</span>
+        <ngx-skeleton-loader
+          *ngIf="item === undefined"
+          count="1"
+          class="author"
+          [theme]="{
+            background: '#4c4284',
+            height: '17px'
+          }"
+          animation="progress-dark"
+        ></ngx-skeleton-loader>
+        <span *ngIf="item !== undefined" class="title">{{
+          item.snippet.title
+        }}</span>
+        <ngx-skeleton-loader
+          *ngIf="item === undefined"
+          count="1"
+          class="title"
+          [theme]="{
+            background: '#4c4284',
+            height: '17px'
+          }"
+          animation="progress-dark"
+        ></ngx-skeleton-loader>
+      </div>
+    </button>
+  </div>
+</div>

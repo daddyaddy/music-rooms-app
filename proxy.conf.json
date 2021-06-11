@@ -1,0 +1,29 @@
+{
+  "/googleapis": {
+    "target": "https://www.googleapis.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/googleapis": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/spotify-api": {
+    "target": "https://api.spotify.com/",
+    "secure": false,
+    "pathRewrite": {
+      "^/spotify-api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/account-spotify": {
+    "target": "https://accounts.spotify.com/",
+    "secure": false,
+    "pathRewrite": {
+      "^/account-spotify": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

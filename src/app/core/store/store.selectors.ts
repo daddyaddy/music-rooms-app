@@ -91,6 +91,15 @@ export const getSelectedRoom$ = (
   return selectedRoom$;
 };
 
+export const getSelectedRoomSongs$ = (
+  storeService: StoreService
+): Observable<RoomSong[]> => {
+  const selectedRoom$: Observable<Room | undefined> =
+    getSelectedRoom$(storeService);
+
+  return selectedRoom$.pipe(map((selectedRoom) => selectedRoom.songs));
+};
+
 export const getSelectedRoomDetail$ = (
   storeService: StoreService
 ): Observable<RoomDetail | undefined> => {

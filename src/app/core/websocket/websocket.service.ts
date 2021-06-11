@@ -1,17 +1,48 @@
+import { environment } from './../../../environments/environment';
+import { getRequestMessageType } from './communication';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { webSocket } from 'rxjs/webSocket';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { take, map, withLatestFrom } from 'rxjs/operators';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import StableWebSocketSubject from './websocket.helpers';
 
 @Injectable({ providedIn: 'root' })
 export class WebSocketService {
-  private readonly url: string = `ws://localhost:8080`;
-  private readonly _webSocket: Subject<MessageData<unknown, unknown>>;
-  public readonly webSocket$: Observable<MessageData<unknown, unknown>>;
+  private pingInterval;
+  private readonly url: string = environment.wsUrl;
+  private readonly _pendingMessages: BehaviorSubject<ClientMessageDataType[]>;
+  private readonly _webSocket: StableWebSocketSubject<
+    MessageData<unknown, unknown>
+  >;
+  public readonly pendingMessages$: Observable<ClientMessageDataType[]>;
+  public readonly webSocket$: Observable<MessageData<any, unknown>>;
 
   constructor() {
     const { url, deserializer } = this;
-    this._webSocket = webSocket({ url, deserializer });
+    this._pendingMessages = new BehaviorSubject([]);
+    this._webSocket = new StableWebSocketSubject({ url, deserializer });
     this.webSocket$ = this._webSocket.asObservable();
+    this.pendingMessages$ = this._pendingMessages.asObservable();
+    this.subscribe();
+    this.pingInterval = setInterval(() => this.ping(), 25000);
+  }
+
+  private ping() {
+    console.log('ping...');
+    this.send({ type: ClientMessageDataType.PING, payload: {} });
+  }
+
+  private subscribe() {
+    this.webSocket$
+      .pipe(withLatestFrom(this.pendingMessages$))
+      .subscribe(([responseMessage, pendingMessages]) => {
+        const requestMessageType = getRequestMessageType(responseMessage.type);
+        this._pendingMessages.next(
+          pendingMessages.filter(
+            (pendingMessage) => requestMessageType !== pendingMessage
+          )
+        );
+      });
   }
 
   private deserializer = (msg: any) => JSON.parse(msg.data);
@@ -19,6 +50,23 @@ export class WebSocketService {
   public send<P extends {} = {}>(
     messageData: MessageData<ClientMessageDataType, P>
   ): void {
+    const { type } = messageData;
+    this._pendingMessages.pipe(take(1)).subscribe((pendingMessages) => {
+      this._pendingMessages.next([...pendingMessages, type]);
+    });
+
     this._webSocket.next(messageData);
+  }
+
+  public isPending$(messageType: ClientMessageDataType): Observable<boolean> {
+    return this.pendingMessages$.pipe(
+      map((pendingMessages) =>
+        Boolean(
+          pendingMessages.find(
+            (pendingMessage) => pendingMessage === messageType
+          )
+        )
+      )
+    );
   }
 }
