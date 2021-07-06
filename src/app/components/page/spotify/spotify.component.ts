@@ -9,13 +9,9 @@ export class SpotifyComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    const accessToken = window.location.hash
-      .substr(1)
-      .split('&')[0]
-      .split('=')[1];
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = (<any>Object).fromEntries((<any>urlSearchParams).entries());
 
-    if (!accessToken) return;
-
-    window.opener.onSpotifyLogin(accessToken);
+    window.opener.onSpotifyLogin(params.code);
   }
 }

@@ -15,6 +15,6 @@
     "target": "es2015",
     "module": "es2020",
     "types": ["node", "spotify-api"],
-    "lib": ["es2018", "dom", "ESNext.String"]
+    "lib": ["es2018", "dom", "esnext", "ESNext.String", "es2017.object"]
   }
 }

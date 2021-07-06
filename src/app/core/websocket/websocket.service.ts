@@ -28,7 +28,6 @@ export class WebSocketService {
   }
 
   private ping() {
-    console.log('ping...');
     this.send({ type: ClientMessageDataType.PING, payload: {} });
   }
 

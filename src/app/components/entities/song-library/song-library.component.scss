@@ -44,9 +44,20 @@
       height: 30px;
       border: none;
       border-radius: 15px;
-      background: #18af4e;
       color: white;
       font-weight: bold;
+
+      &.spotify {
+        background: #18af4e;
+      }
+
+      &.youtube {
+        background: #ff4747;
+      }
+
+      &.soundcloud {
+        background: #fb7415;
+      }
 
       i {
         margin-right: 5px;
@@ -55,8 +66,8 @@
 
     .library-song-preview {
       width: 65px;
-      height: 65px;
-      background: #2a2753;
+      height: 70px;
+      background: #242043;
       margin: 8px;
       border-radius: 3px;
       border: none;
@@ -73,23 +84,36 @@
         width: 0%;
         max-width: 100%;
         height: 100%;
-        background: rgb(193 39 106 / 50%);
+        background: linear-gradient(45deg, #ff2483, #9461e7);
       }
 
       .cover {
         width: 100%;
-        height: 70%;
+        height: 35px;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        box-shadow: 0 0 5px 1px #0b0b29;
+        position: relative;
+        z-index: 20;
       }
 
       .label {
         width: 100%;
+        line-height: 12px;
+        position: relative;
+        z-index: 20;
+
+        div {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
 
         span {
           font-size: 10px;
-          color: #bbb;
+          color: #ccc;
+          font-weight: bold;
         }
       }
     }

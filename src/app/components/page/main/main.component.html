@@ -1,0 +1,3 @@
+<app-start *ngIf="!this.isCurrentClientAuth"></app-start>
+<app-room *ngIf="this.isCurrentClientAuth && this.selectedRoom"></app-room>
+<app-rooms *ngIf="this.isCurrentClientAuth && !this.selectedRoom"></app-rooms>

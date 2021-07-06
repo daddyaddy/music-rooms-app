@@ -1,3 +1,7 @@
+import {
+  SongLibraryService,
+  FolderType,
+} from './../../entities/song-library/song-library.service';
 import { YoutubeService } from './../../../core/youtube/youtube.service';
 import { OnDestroy, ViewChild } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
@@ -16,12 +20,14 @@ export class RoomComponent implements OnDestroy {
   private _subscription$: Subscription = new Subscription();
   private addSongButtonClick$: Observable<MouseEvent>;
   public selectedRoomDetail: RoomDetail | undefined = undefined;
+  public selectedFolder: FolderType | undefined = undefined;
   public isExistHost: boolean = false;
   public isCurrentUserIsHost: boolean = false;
 
   constructor(
     private storeFacade: StoreFacade,
-    private windowSongLibraryService: WindowSongLibraryService
+    private windowSongLibraryService: WindowSongLibraryService,
+    private songLibraryService: SongLibraryService
   ) {}
 
   ngAfterViewInit(): void {
@@ -38,6 +44,11 @@ export class RoomComponent implements OnDestroy {
       this.storeFacade.selectedRoomDetail$.subscribe((data) => {
         this.selectedRoomDetail = data;
       })
+    );
+    this._subscription$.add(
+      this.songLibraryService.selectedFolderType$.subscribe(
+        (data) => (this.selectedFolder = data)
+      )
     );
     this._subscription$.add(
       this.storeFacade.isSelectedRoomHostUserInsideRoom$.subscribe((data) => {

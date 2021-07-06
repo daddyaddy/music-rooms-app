@@ -1,3 +1,7 @@
+import {
+  SongLibraryService,
+  FolderType,
+} from './../song-library/song-library.service';
 import { SpotifyLibrary } from '../song-library/spotify-library.service';
 import { StoreFacade } from './../../../core/store/store.facade';
 import { YoutubeService } from './../../../core/youtube/youtube.service';
@@ -39,10 +43,12 @@ export class SongSearchComponent implements OnInit {
   public ytItems: Array<YtItem> = [];
   public currentClient: Client;
   public selectedRoom: Room;
+  public selectedFolder: FolderType;
 
   constructor(
     public youtubeService: YoutubeService,
-    public storeFacade: StoreFacade
+    public storeFacade: StoreFacade,
+    public songLibraryService: SongLibraryService
   ) {}
 
   ngOnInit(): void {}
@@ -101,10 +107,19 @@ export class SongSearchComponent implements OnInit {
         this.searchInputValue = '';
       });
     this.searchInputValue$.subscribe((data) => (this.searchInputValue = data));
-    this.searchInputFocus$.subscribe((data) => (this.ytItems = []));
-    this.searchSubmit$.subscribe((data) =>
-      this.searchInputRef.nativeElement.blur()
-    );
+    this.searchInputFocus$.subscribe((data) => {
+      this.ytItems = [];
+      this.songLibraryService.selectFolder(undefined);
+    });
+    this.songLibraryService.selectedFolderType$
+      .pipe(filter((folderType) => folderType !== undefined))
+      .subscribe((data) => {
+        this.ytItems = [];
+      });
+    this.searchSubmit$.subscribe((data) => {
+      this.searchInputRef.nativeElement.blur();
+      this.songLibraryService.selectFolder(undefined);
+    });
     this.cancelButtonClick$.subscribe((data) => {
       this.ytItems = [];
       this.searchInputValue = '';
@@ -137,6 +152,10 @@ export class SongSearchComponent implements OnInit {
         const progress = this.songProgress.progress / 100;
         this.dashoffset = this.circumference * (1 - progress);
       }
+    });
+
+    this.songLibraryService.selectedFolderType$.subscribe((data) => {
+      this.selectedFolder = data;
     });
   }
 
@@ -171,6 +190,14 @@ export class SongSearchComponent implements OnInit {
   public isSongAlreadyAdded = (ytId: string) => {
     const { selectedRoomSongs } = this;
     return Boolean(selectedRoomSongs.find((song) => song.ytId === ytId));
+  };
+
+  public handleFoldersButtonClick = () => {
+    const { selectedFolder } = this;
+
+    selectedFolder
+      ? this.songLibraryService.selectFolder(undefined)
+      : this.songLibraryService.selectFolder('spotify');
   };
 
   ngOnDestroy(): void {

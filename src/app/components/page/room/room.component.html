@@ -1,11 +1,29 @@
 <div class="room">
   <div class="top-static">
     <div class="top">
-      <app-top-bar>
-        <button class="left-room-button" (click)="this.handleRoomButtonClick()">
-          <i class="icon-left-open"></i>
-        </button>
-        <h3>{{ this.selectedRoomDetail && this.selectedRoomDetail.name }}</h3>
+      <app-top-bar class="top-bar">
+        <div class="name">
+          <button
+            class="left-room-button"
+            (click)="this.handleRoomButtonClick()"
+          >
+            <i class="icon-left-open"></i>
+          </button>
+          <h3>{{ this.selectedRoomDetail && this.selectedRoomDetail.name }}</h3>
+        </div>
+        <div class="extra">
+          <button
+            *ngIf="!this.isExistHost"
+            class="become-host"
+            [isBig]="true"
+            (click)="this.handleBecomeHostButtonClick()"
+          >
+            <i class="icon-star"></i>
+          </button>
+          <button>
+            <i class="icon-cog"></i>
+          </button>
+        </div>
       </app-top-bar>
       <app-room-members></app-room-members>
     </div>
@@ -25,20 +43,25 @@
   <div class="bottom-static">
     <div class="bottom">
       <div class="controller">
+        <div class="reactions" *ngIf="!this.isCurrentUserIsHost">
+          <app-round-button>
+            <i class="icon-heart-empty"></i>
+          </app-round-button>
+          <app-round-button>
+            <i class="icon-thumbs-up"></i>
+          </app-round-button>
+          <app-round-button>
+            <i class="icon-thumbs-down"></i>
+          </app-round-button>
+        </div>
         <app-room-song-player
           *ngIf="this.isCurrentUserIsHost"
         ></app-room-song-player>
-        <app-round-button
-          *ngIf="!this.isExistHost"
-          class="become-host"
-          [isBig]="true"
-          (click)="this.handleBecomeHostButtonClick()"
-        >
-          <i class="icon-star"></i>
-        </app-round-button>
       </div>
       <app-song-search></app-song-search>
-      <app-song-library></app-song-library>
+      <app-song-library
+        *ngIf="this.selectedFolder !== undefined"
+      ></app-song-library>
     </div>
   </div>
 </div>

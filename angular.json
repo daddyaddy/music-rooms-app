@@ -25,7 +25,7 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/fontello-fe93f1b0",
+              "src/fontello-dc06f688",
               "src/assets"
             ],
             "styles": ["src/styles.scss"],

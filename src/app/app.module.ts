@@ -1,3 +1,5 @@
+import { LocalstorageService } from './core/localstorage/localstorage';
+import { AuthenticationGuard } from './guards/authentication.guard';
 import { WebSocketService } from './core/websocket/websocket.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
@@ -24,14 +26,23 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SongLibraryComponent } from './components/entities/song-library/song-library.component';
 import { SpotifyComponent } from './components/page/spotify/spotify.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './components/page/main/main.component';
+import { YoutubeComponent } from './components/page/youtube/youtube.component';
+import { SoundcloudComponent } from './components/page/soundcloud/soundcloud.component';
+import { SoundcloudAuthComponent } from './components/page/soundcloud-auth/soundcloud-auth.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', component: MainComponent },
+  { path: 'soundcloud-auth', component: SoundcloudAuthComponent },
   { path: 'spotify-callback', component: SpotifyComponent },
+  { path: 'youtube-callback', component: YoutubeComponent },
+  { path: 'soundcloud-callback', component: SoundcloudComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainComponent,
     StartComponent,
     RoomComponent,
     TopBarComponent,
@@ -48,6 +59,9 @@ const routes: Routes = [
     SongSearchComponent,
     SongLibraryComponent,
     SpotifyComponent,
+    YoutubeComponent,
+    SoundcloudComponent,
+    SoundcloudAuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +70,7 @@ const routes: Routes = [
     HttpClientModule,
     NgxSkeletonLoaderModule,
   ],
-  providers: [WebSocketService, StoreFacade],
+  providers: [WebSocketService, LocalstorageService, StoreFacade],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

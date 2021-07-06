@@ -1,3 +1,4 @@
+import { LocalstorageService } from './../../../core/localstorage/localstorage';
 import { filter, withLatestFrom } from 'rxjs/operators';
 import {
   ChangeDetectorRef,
@@ -31,6 +32,7 @@ export class StartComponent implements OnInit, OnDestroy {
   public nickInputValue: string = '';
 
   constructor(
+    private localstorageService: LocalstorageService,
     private storeFacade: StoreFacade,
     private cd: ChangeDetectorRef
   ) {}

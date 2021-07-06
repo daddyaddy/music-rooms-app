@@ -1,5 +1,11 @@
 <div class="form">
-  <button class="search-button"><i class="icon-th-large"></i></button>
+  <button
+    class="search-button folders"
+    [disabled]="this.isSearchPending || this.isAddSongPending"
+    (click)="this.handleFoldersButtonClick()"
+  >
+    <i class="icon-th-large"></i>
+  </button>
   <input
     #searchInputRef
     class="search-input"

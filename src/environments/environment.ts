@@ -4,9 +4,13 @@
 
 export const environment = {
   production: false,
-  ytApiUrl: '/googleapis/youtube/v3/search',
+  googleApiUrl: '/googleapis',
+  oauthGoogleApis: '/oauth2-googleapis',
+  googleAccountsUrl: '/account-google',
+  ytApiUrl: '/googleapis/youtube/v3',
   spotifyApiUrl: '/spotify-api/v1',
   spotifyAccountUrl: '/account-spotify',
+  soundCloudApiUrl: '/soundcloud-api',
   wsUrl: 'ws://localhost:62188',
 };
 

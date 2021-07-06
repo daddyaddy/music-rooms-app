@@ -1,0 +1,23 @@
+<div>
+  <i class="icon-soundcloud"></i>
+</div>
+<span>
+  W celu zaimportowania biblioteki utworów z SoundCloud
+  <b>nie trzeba</b> dokynywać procesu autoryzacji.
+</span>
+<span>Wystarczy, że podasz swój nickname:</span>
+<input class="nickname" autofocus="true" type="text" #nicknameInputRef />
+<button class="continue" #continueButtonRef>Continue</button>
+<div class="users">
+  <button
+    class="user"
+    *ngFor="let user of this.users"
+    (click)="this.handleUserButtonClick(user)"
+  >
+    <div
+      class="user-avatar"
+      [style.backgroundImage]="'url(' + user.avatar_url + ')'"
+    ></div>
+    <div class="user-username">{{ user.username }}</div>
+  </button>
+</div>

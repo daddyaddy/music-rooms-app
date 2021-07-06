@@ -51,9 +51,9 @@ export class YoutubeService {
     return defer(() => {
       this._isSearchPending.next(true);
       this._songProgress$.next(undefined);
-      const url = `${this.apiUrl}?q=${query}&key=${this.apiKey}&part=snippet&type=video&maxResults=5`;
+      const url = `${this.apiUrl}/search?q=${query}&key=${this.apiKey}&part=snippet&type=video&maxResults=5`;
       this.fetchItems$ = this.http.get(url).pipe(
-        delay(2000),
+        delay(500),
         map((response: any) => response.items),
         finalize(() => this._isSearchPending.next(false))
       );

@@ -1,3 +1,4 @@
+import { LocalstorageService } from './../localstorage/localstorage';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
@@ -39,7 +40,8 @@ export class StoreFacade {
 
   constructor(
     private webSocketService: WebSocketService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private localstorageService: LocalstorageService
   ) {
     this.currentClientId$ = getCurrentClientId$(storeService);
     this.clients$ = getClients$(storeService);
@@ -57,14 +59,16 @@ export class StoreFacade {
       getIsSelectedRoomHostUserInsideRoom$(storeService);
   }
 
-  public authClient(nickname: string) {
+  public authClient(nickname: string, avatarColor?: [string, string]) {
+    this.localstorageService.setStorage({ nickname });
     this.webSocketService.send<AuthUserPayload>({
       type: ClientMessageDataType.AUTH_CLIENT,
-      payload: { nickname },
+      payload: { nickname, avatarColor },
     });
   }
 
   public joinRoom(roomId: string): void {
+    this.localstorageService.setStorage({ currentRoomId: roomId });
     this.webSocketService.send<JoinRoomPayload>({
       type: ClientMessageDataType.JOIN_ROOM,
       payload: { roomId },
@@ -72,6 +76,7 @@ export class StoreFacade {
   }
 
   public leftRoom(): void {
+    this.localstorageService.setStorage({ currentRoomId: undefined });
     this.webSocketService.send<LeftRoomPayload>({
       type: ClientMessageDataType.LEFT_ROOM,
       payload: {},

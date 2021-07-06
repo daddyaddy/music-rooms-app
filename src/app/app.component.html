@@ -1,8 +1,5 @@
 <div class="app">
-  <router-outlet></router-outlet>
   <app-window-room-creator></app-window-room-creator>
   <app-window-song-library></app-window-song-library>
-  <app-start *ngIf="!this.isCurrentClientAuth"></app-start>
-  <app-room *ngIf="this.isCurrentClientAuth && this.selectedRoom"></app-room>
-  <app-rooms *ngIf="this.isCurrentClientAuth && !this.selectedRoom"></app-rooms>
+  <router-outlet></router-outlet>
 </div>

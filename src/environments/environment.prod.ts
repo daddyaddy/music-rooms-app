@@ -1,7 +1,11 @@
 export const environment = {
   production: true,
-  ytApiUrl: 'https://www.googleapis.com/youtube/v3/search',
-  spotifyApiUrl: 'https://www.api.spotify.com/v1',
-  spotifyAccountUrl: 'https://www.accounts.spotify.com',
+  googleApiUrl: 'https://googleapis.com',
+  oauthGoogleApis: 'https://oauth2.googleapis.com',
+  googleAccountsUrl: 'https://accounts.google.com',
+  ytApiUrl: 'https://googleapis.com/youtube/v3',
+  spotifyApiUrl: 'https://api.spotify.com/v1',
+  spotifyAccountUrl: 'https://accounts.spotify.com',
+  soundCloudApiUrl: 'https://api.soundcloud.com',
   wsUrl: 'wss://ws.flangery.com',
 };

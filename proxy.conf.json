@@ -25,5 +25,32 @@
     },
     "changeOrigin": true,
     "logLevel": "debug"
+  },
+  "/account-google": {
+    "target": "https://accounts.google.com/",
+    "secure": false,
+    "pathRewrite": {
+      "^/account-google": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/oauth2-googleapis": {
+    "target": "https://oauth2.googleapis.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/oauth2-googleapis": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/soundcloud-api": {
+    "target": "https://api.soundcloud.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/soundcloud-api": ""
+    },
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }

@@ -21,3 +21,13 @@ export function ofType(
 export function sleep(ms: number): Promise<number> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+export const getFormBody = (object: { [key: string]: string }): string => {
+  const formBody = [];
+  for (const property in object) {
+    const encodedKey = encodeURIComponent(property);
+    const encodedValue = encodeURIComponent(object[property]);
+    formBody.push(encodedKey + '=' + encodedValue);
+  }
+  return formBody.join('&');
+};

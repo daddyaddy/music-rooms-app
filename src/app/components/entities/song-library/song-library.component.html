@@ -1,27 +1,71 @@
 <section class="library-folders">
-  <button class="folder selected"><i class="icon-spotify"></i>Spotify</button>
-  <button class="folder"><i class="icon-youtube-play"></i>YouTube</button>
-  <button class="folder"><i class="icon-soundcloud"></i>SoundCloud</button>
+  <button
+    class="folder"
+    [class.selected]="this.selectedFolderType === 'spotify'"
+    (click)="this.handleFolderClick('spotify')"
+  >
+    <i class="icon-spotify"></i>Spotify
+  </button>
+  <button
+    class="folder"
+    [class.selected]="this.selectedFolderType === 'youtube'"
+    (click)="this.handleFolderClick('youtube')"
+  >
+    <i class="icon-youtube-play"></i>YouTube
+  </button>
+  <button
+    class="folder"
+    [class.selected]="this.selectedFolderType === 'soundcloud'"
+    (click)="this.handleFolderClick('soundcloud')"
+  >
+    <i class="icon-soundcloud"></i>SoundCloud
+  </button>
 </section>
 <section class="library-songs">
   <button
-    class="sign-in"
-    *ngIf="!this.spotifyUserTracks.length"
+    class="sign-in spotify"
+    *ngIf="
+      this.selectedFolderType === 'spotify' && !this.selectedFolderSongs.length
+    "
     (click)="this.handleAddSpotifyAccountClick()"
   >
-    <i class="icon-spotify"></i>Add spotify account
+    <i class="icon-spotify"></i>Add Spotify account
+  </button>
+  <button
+    class="sign-in youtube"
+    *ngIf="
+      this.selectedFolderType === 'youtube' && !this.selectedFolderSongs.length
+    "
+    (click)="this.handleAddYouTubeAccountClick()"
+  >
+    <i class="icon-youtube-play"></i>Add YouTube account
+  </button>
+  <button
+    class="sign-in soundcloud"
+    *ngIf="
+      this.selectedFolderType === 'soundcloud' &&
+      !this.selectedFolderSongs.length
+    "
+    (click)="this.handleAddSoundCloudAccountClick()"
+  >
+    <i class="icon-soundcloud"></i>Add SoundCloud account
   </button>
   <button
     class="library-song-preview"
-    *ngFor="let userTrack of this.spotifyUserTracks"
+    *ngFor="let song of this.selectedFolderSongs"
   >
     <div class="load-background"></div>
     <div
       class="cover"
-      [style.backgroundImage]="'url(' + userTrack.album.images[0].url + ')'"
+      [style.backgroundImage]="'url(' + song.cover + ')'"
     ></div>
     <div class="label">
-      <span>{{ userTrack.name }}</span>
+      <div class="author">
+        <span>{{ song.author }}</span>
+      </div>
+      <div class="title">
+        <span>{{ song.title }}</span>
+      </div>
     </div>
   </button>
 </section>

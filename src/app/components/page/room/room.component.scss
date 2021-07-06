@@ -8,6 +8,28 @@
       background: linear-gradient(0deg, #12112f, #341a54);
       width: 100%;
       z-index: 1000;
+
+      .top-bar {
+        .name,
+        .extra {
+          display: flex;
+        }
+
+        .name {
+          flex: 1;
+        }
+
+        .extra {
+          align-items: center;
+
+          button {
+            border: none;
+            background: transparent;
+            color: #e96196;
+            font-size: 18px;
+          }
+        }
+      }
     }
   }
 
@@ -46,6 +68,12 @@
         align-items: center;
         background-color: #12122e;
         margin-bottom: -1px;
+
+        .reactions {
+          display: flex;
+          flex: 1;
+          justify-content: space-evenly;
+        }
       }
     }
   }
